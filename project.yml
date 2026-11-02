@@ -1,0 +1,73 @@
+name: Sweep
+options:
+  bundleIdPrefix: io.github.felzy613
+  deploymentTarget:
+    macOS: "14.0"
+  createIntermediateGroups: true
+  developmentLanguage: en
+
+settings:
+  base:
+    SWIFT_VERSION: "6.0"
+    MARKETING_VERSION: "1.0.0"
+    CURRENT_PROJECT_VERSION: "1"
+    MACOSX_DEPLOYMENT_TARGET: "14.0"
+
+targets:
+  Sweep:
+    type: application
+    platform: macOS
+    sources:
+      - path: Sweep
+    entitlements:
+      path: Sweep/Resources/Sweep.entitlements
+      properties:
+        # A cleaner has to reach into ~/Library, /Library and other apps'
+        # folders, which the App Sandbox forbids.
+        com.apple.security.app-sandbox: false
+        com.apple.security.automation.apple-events: true
+    settings:
+      base:
+        PRODUCT_NAME: Sweep
+        PRODUCT_BUNDLE_IDENTIFIER: io.github.felzy613.Sweep
+        GENERATE_INFOPLIST_FILE: YES
+        INFOPLIST_KEY_CFBundleDisplayName: Sweep
+        INFOPLIST_KEY_LSApplicationCategoryType: public.app-category.utilities
+        INFOPLIST_KEY_NSHumanReadableCopyright: "Copyright © 2026 Felzy613. All rights reserved."
+        INFOPLIST_KEY_NSAppleEventsUsageDescription: "Sweep uses AppleScript to ask for your administrator password when a task needs elevated privileges."
+        ASSETCATALOG_COMPILER_APPICON_NAME: AppIcon
+        ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME: AccentColor
+        CODE_SIGN_IDENTITY: "-"
+        CODE_SIGN_STYLE: Manual
+        DEVELOPMENT_TEAM: ""
+        ENABLE_HARDENED_RUNTIME: YES
+        ENABLE_USER_SCRIPT_SANDBOXING: YES
+        SWIFT_STRICT_CONCURRENCY: complete
+
+  SweepTests:
+    type: bundle.unit-test
+    platform: macOS
+    sources:
+      - path: SweepTests
+    dependencies:
+      - target: Sweep
+    settings:
+      base:
+        GENERATE_INFOPLIST_FILE: YES
+        PRODUCT_BUNDLE_IDENTIFIER: io.github.felzy613.SweepTests
+        CODE_SIGN_IDENTITY: "-"
+        CODE_SIGN_STYLE: Manual
+        BUNDLE_LOADER: "$(TEST_HOST)"
+        TEST_HOST: "$(BUILT_PRODUCTS_DIR)/Sweep.app/Contents/MacOS/Sweep"
+
+schemes:
+  Sweep:
+    build:
+      targets:
+        Sweep: all
+        SweepTests: [test]
+    test:
+      targets:
+        - SweepTests
+    run:
+      config: Debug
