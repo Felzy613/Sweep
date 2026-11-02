@@ -33,7 +33,7 @@ targets:
         GENERATE_INFOPLIST_FILE: YES
         INFOPLIST_KEY_CFBundleDisplayName: Sweep
         INFOPLIST_KEY_LSApplicationCategoryType: public.app-category.utilities
-        INFOPLIST_KEY_NSHumanReadableCopyright: "Copyright © 2026 Felzy613. All rights reserved."
+        INFOPLIST_KEY_NSHumanReadableCopyright: "Copyright © 2026 Felzy613. Released under the MIT License."
         INFOPLIST_KEY_NSAppleEventsUsageDescription: "Sweep uses AppleScript to ask for your administrator password when a task needs elevated privileges."
         ASSETCATALOG_COMPILER_APPICON_NAME: AppIcon
         ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME: AccentColor

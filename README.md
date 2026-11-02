@@ -98,3 +98,7 @@ SweepTests/     Swift Testing unit and smoke tests
 Tools/          icon generator
 project.yml     XcodeGen project definition
 ```
+
+## License
+
+MIT. See [LICENSE](LICENSE).
